@@ -21,7 +21,7 @@ public class PantallaNivelFinal implements Pantalla {
     private static int ORIGEN_ENEMIGO_X = 10;
     private static int ORIGEN_ENEMIGO_Y = 10;
     private static int VELOCIDAD_ENEMIGO = 15;
-    private static int VIDA_ENEMIGO = 10;
+    private static int VIDA_ENEMIGO = 20;
 
     //CONSTANTES DE LA NAVE
     private static int ALTO_NAVE = 30;
@@ -49,9 +49,6 @@ public class PantallaNivelFinal implements Pantalla {
     //NUMERO DE ENEMIGOS EXPLOTADOS
     private int contadorExplotados;
 
-    //REFERENCIA PARA PASAR DE UNA PANTALLA A OTRA
-    private int contador;
-
     //ENEMIGO FINAL
     private Sprite enemigoFinal;
 
@@ -77,7 +74,6 @@ public class PantallaNivelFinal implements Pantalla {
     public PantallaNivelFinal(PanelJuego p){
         this.p = p;
         fuente = new Font("Arial", Font.BOLD, 40);
-        contador = 0;
         puesta = true;
         contadorExplotados = contadorExplotados + pantallas.niveles.nivel3.PantallaNivel3.contadorExplotados;
     }
@@ -214,7 +210,7 @@ public class PantallaNivelFinal implements Pantalla {
                 disparo = null;
                 audioInputStream = null;
                 contadorExplotados++;
-                contador++;
+                VIDA_ENEMIGO--;
             }
         }
     }
@@ -286,7 +282,7 @@ public class PantallaNivelFinal implements Pantalla {
      * COMPRUEBA SI AUN SIGUE VIVO EL ENEMIGO, SI NO, SE PASA A LA PANTALLAFINALGANADA
      */
      private void comprobarSiEnemigoSigueVivo() {
-        if (contador == VIDA_ENEMIGO){
+        if (VIDA_ENEMIGO == 0){
             //PARAMOS EL SONIDO
             pararSonido();
             pararSonidoFondo();
