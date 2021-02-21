@@ -20,7 +20,7 @@ public class PantallaNivelFinal implements Pantalla {
     private static int LADO_ENEMIGO_VERTICAL = 100;
     private static int ORIGEN_ENEMIGO_X = 10;
     private static int ORIGEN_ENEMIGO_Y = 10;
-    private static int VELOCIDAD_ENEMIGO = 15;
+    private static int VELOCIDAD_ENEMIGO = 30;
     private static int VIDA_ENEMIGO = 20;
 
     //CONSTANTES DE LA NAVE
