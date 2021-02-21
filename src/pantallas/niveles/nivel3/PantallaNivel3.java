@@ -3,7 +3,6 @@ package pantallas.niveles.nivel3;
 import java.awt.*;
 import java.util.ArrayList;
 import principal.*;
-import java.text.DecimalFormat;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
@@ -38,11 +37,6 @@ public class PantallaNivel3 implements Pantalla {
     //ARRAYLIST PARA ALMACENAR ENEMIGOS
     private ArrayList<Sprite> enemigos;
 
-    //TIEMPO DE PARTIDA DE LA PANTALLA DE JUEGO
-    private double inicioTiempo;
-    private double tiempoTranscurrido;
-    private DecimalFormat formateador;
-
     //ATRIBUTOS DE LA NAVE
     private Sprite nave;
     private Sprite disparo;
@@ -72,8 +66,6 @@ public class PantallaNivel3 implements Pantalla {
      */
     public PantallaNivel3(PanelJuego p){
         this.p = p;
-        inicioTiempo = System.nanoTime();
-        formateador = new DecimalFormat("0.00");
         fuenteTiempo = new Font("Arial", Font.BOLD, 40);
         contadorExplotados = contadorExplotados + pantallas.niveles.nivel2.PantallaNivel2.contadorExplotados;
         contador = 0;
@@ -103,9 +95,6 @@ public class PantallaNivel3 implements Pantalla {
 
         //REDIMENSIONAMOS LA IMAGEN DE FONDO DEL PANEL DE JUEGO
         redimensionarFondo();
-
-        //INICIALIZAMOS INICIOTIEMPO
-        inicioTiempo = System.nanoTime();
     }
 
     /**
@@ -127,11 +116,6 @@ public class PantallaNivel3 implements Pantalla {
     public void pintarPantalla(Graphics g) {
         // RELLENAMOS EL FONDO
         rellenarFondo(g);
-
-        //PINTAMOS EL TIEMPO
-        g.setColor(Color.WHITE);
-        g.setFont(fuenteTiempo);
-        g.drawString(formateador.format(tiempoTranscurrido/1e9), 60, 60);
 
         //PINTAMOS LA PUNTUACION
         g.setColor(Color.WHITE);
@@ -256,9 +240,6 @@ public class PantallaNivel3 implements Pantalla {
         for (int i = 0; i < enemigos.size(); i++) {
             enemigos.get(i).moverEnemigos(p.getWidth(), p.getHeight());
         }
-
-        //CONTAMOS EL TIEMPO
-        contarTiempo();
     }
 
     /**
@@ -270,13 +251,6 @@ public class PantallaNivel3 implements Pantalla {
             pantallaFinalGanada.inicializarPantalla();
             p.cambiarPantalla(pantallaFinalGanada);
         }
-    }
-
-    /**
-     * CUENTA EL TIEMPO TRANSCURRIDO
-     */
-    private void contarTiempo() {
-        tiempoTranscurrido = System.nanoTime() - inicioTiempo;
     }
 
     /**
